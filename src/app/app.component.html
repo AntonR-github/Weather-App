@@ -1,0 +1,126 @@
+
+<div class="search">
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Search city" name="city"
+    [(ngModel)]="cityName">
+  </form>
+</div>
+<div class="forecasts" *ngIf="weatherData">
+  <div class="forecast">
+     <div>Day: {{weatherData.forecasts[1].day}}</div>
+     <div>Max: {{weatherData.forecasts[1].low}}°C</div>
+     <div>Min: {{weatherData.forecasts[1].high}}°C</div>
+     <div>{{weatherData.forecasts[1].text}}</div>
+  </div>
+  <span> &nbsp; &nbsp; </span>
+  <div class="forecast">
+    <div>Day: {{weatherData.forecasts[2].day}}</div>
+    <div>Max: {{weatherData.forecasts[2].low}}°C</div>
+    <div>Min: {{weatherData.forecasts[2].high}}°C</div>
+    <div>{{weatherData.forecasts[2].text}}</div>
+ </div>
+ <span> &nbsp; &nbsp; </span>
+  <div class="forecast">
+    <div>Day: {{weatherData.forecasts[3].day}}</div>
+    <div>Max: {{weatherData.forecasts[3].low}}°C</div>
+    <div>Min: {{weatherData.forecasts[3].high}}°C</div>
+    <div>{{weatherData.forecasts[3].text}}</div>
+ </div>
+ <span> &nbsp; &nbsp; </span>
+  <div class="forecast">
+    <div>Day: {{weatherData.forecasts[4].day}}</div>
+    <div>Max: {{weatherData.forecasts[4].low}}°C</div>
+    <div>Min: {{weatherData.forecasts[4].high}}°C</div>
+    <div>{{weatherData.forecasts[4].text}}</div>
+ </div>
+ <span> &nbsp; &nbsp; </span>
+  <div class="forecast">
+    <div>Day: {{weatherData.forecasts[5].day}}</div>
+    <div>Max: {{weatherData.forecasts[5].low}}°C</div>
+    <div>Min: {{weatherData.forecasts[5].high}}°C</div>
+    <div>{{weatherData.forecasts[5].text}}</div>
+ </div>
+
+</div>
+
+
+<div class="container" *ngIf="weatherData">
+  <div class="upper-data">
+    <img src="../assets/hot.jpg" *ngIf="weatherData.current_observation.condition.temperature > 15">
+    <img src="../assets/cold.jpg" *ngIf="weatherData.current_observation.condition.temperature <= 15">
+    <div class="weather-data">
+      <div class="location">{{weatherData.location.city}}</div>
+      <div class="temperature">{{weatherData.current_observation.condition.temperature | number: '1.0-0'}}°C</div>
+      <div class="condition-text">{{weatherData.current_observation.condition.text}}</div>
+    </div>
+  </div>
+
+  <div class="lower-data">
+    <div class="more-info-lable">
+      More Information
+    </div>
+
+    <div class="more-info-container">
+      <div class="info-block">
+        <div class="info-block-lable">
+          <img src="../assets/max.png" alt="">
+          </div>
+          <span>Max</span>
+          <div class="info-block-value">
+            {{weatherData.forecasts[0].high}}°C
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-lable">
+          <img src="../assets/min.png" alt="">
+          <span>Min</span>
+          </div>
+          <div class="info-block-value">
+          {{weatherData.forecasts[0].low}}C
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-lable">
+          <img src="../assets/humidity.png" alt="">
+          <span>Humidity</span>
+          </div>
+          <div class="info-block-value">
+            {{weatherData.current_observation.atmosphere.humidity}}%
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-lable">
+          <img src="../assets/wind.png" alt="">
+          <span>Wind</span>
+          </div>
+          <div class="info-block-value">
+            {{weatherData.current_observation.wind.speed}}km/h
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-lable">
+          <img src="../assets/sunrise.png" alt="">
+          <span>Sunrise</span>
+          </div>
+          <div class="info-block-value">
+            {{weatherData.current_observation.astronomy.sunrise}}
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-lable">
+          <img src="../assets/sunset.png" alt="">
+          <span>Sunset</span>
+          </div>
+          <div class="info-block-value">
+            {{weatherData.current_observation.astronomy.sunset}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<router-outlet></router-outlet>
